@@ -22,6 +22,6 @@ public interface ThirdRepository extends JpaRepository<Third, String> {
     @Query(value = "select * from sp.choose_3b()", nativeQuery = true)
     Third callThirdB();
 
-    @Query(value = "select  code, vn_name,bu,working_time from sp.third where working_time = :working_time ORDER BY id desc", nativeQuery = true)
+    @Query(value = "select  code, vn_name,bu,working_time from sp.third where working_time = :working_time ORDER BY id asc", nativeQuery = true)
     List<Third> getListThird(@Param("working_time") String working_time);
 }
