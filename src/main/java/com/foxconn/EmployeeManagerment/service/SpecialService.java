@@ -2,7 +2,9 @@ package com.foxconn.EmployeeManagerment.service;
 
 import com.foxconn.EmployeeManagerment.entity.Special;
 import com.foxconn.EmployeeManagerment.repository.SpecialRepository;
+import io.jsonwebtoken.lang.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,7 @@ public class SpecialService {
         return repository.callSpecial();
     }
     public List<Special> getList(){
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
     public void delete(String code, String bu){
 
@@ -32,5 +34,18 @@ public class SpecialService {
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
+   public boolean updatePrize(String code){
+        Special special1 = repository.findByCode(code);
+        Assert.notNull(special1, "CODE NOT FOUND");
+        if(special1.getReceive() == 1){
+           special1.setReceive(0);
+           repository.save(special1);
+            return true;
+        }else if(special1.getReceive() == 0){
+            special1.setReceive(1);
+            repository.save(special1);
+            return true;
+        }
+        else return false;
+    }
 }

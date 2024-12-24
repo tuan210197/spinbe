@@ -1,7 +1,10 @@
 package com.foxconn.EmployeeManagerment.service;
 
+import com.foxconn.EmployeeManagerment.controller.SpecialController;
 import com.foxconn.EmployeeManagerment.entity.Second;
+import com.foxconn.EmployeeManagerment.entity.Special;
 import com.foxconn.EmployeeManagerment.repository.SecondRepository;
+import io.jsonwebtoken.lang.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +55,21 @@ public class SecondService {
         } catch (Exception e) {
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+
+    public boolean updatePrize(String code){
+        Second second = repository.findByCode(code);
+        Assert.notNull(second, "CODE NOT FOUND");
+        if(second.getReceive() == 1){
+            second.setReceive(0);
+            repository.save(second);
+            return true;
+        }else if(second.getReceive() == 0){
+            second.setReceive(1);
+            repository.save(second);
+            return true;
+        }
+        else return false;
     }
 }

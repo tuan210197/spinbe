@@ -13,4 +13,7 @@ public interface SpecialRepository extends JpaRepository<Special,String> {
 
     @Query(value = "call sp.on_deletedb(:code, :bu)", nativeQuery = true)
     void deleteSpecial(@Param("code") String code, @Param("bu") String bu);
+
+    @Query(value = "SELECT u FROM Special u WHERE u.code = :code")
+    Special findByCode(@Param("code") String code);
 }

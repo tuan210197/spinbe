@@ -15,4 +15,7 @@ public interface FirstRepository extends JpaRepository<First, String> {
 
     @Query(value = "call sp.on_delete1(:code, :bu)", nativeQuery = true)
     void deleteFirst(@Param("code") String code, @Param("bu") String bu);
+
+    @Query(value = "SELECT u FROM First u WHERE u.code = :code")
+   First findByCode(@Param("code") String code);
 }

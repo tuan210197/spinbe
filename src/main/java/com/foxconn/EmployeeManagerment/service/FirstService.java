@@ -1,8 +1,11 @@
 package com.foxconn.EmployeeManagerment.service;
 
 import com.foxconn.EmployeeManagerment.entity.First;
+import com.foxconn.EmployeeManagerment.entity.Special;
 import com.foxconn.EmployeeManagerment.repository.FirstRepository;
+import io.jsonwebtoken.lang.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,7 +25,7 @@ public class FirstService {
     }
 
     public List<First> getList() {
-        return firstRepository.findAll();
+        return firstRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
     public void delete(String code, String bu){
 
@@ -33,5 +36,20 @@ public class FirstService {
         } catch (Exception e) {
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    public boolean updatePrize(String code){
+        First first = firstRepository.findByCode(code);
+        Assert.notNull(first, "CODE NOT FOUND");
+        if(first.getReceive() == 1){
+            first.setReceive(0);
+            firstRepository.save(first);
+            return true;
+        }else if(first.getReceive() == 0){
+            first.setReceive(1);
+            firstRepository.save(first);
+            return true;
+        }
+        else return false;
     }
 }

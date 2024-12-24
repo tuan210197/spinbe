@@ -6,13 +6,14 @@ import com.foxconn.EmployeeManagerment.entity.Special;
 import com.foxconn.EmployeeManagerment.service.SecondService;
 import com.foxconn.EmployeeManagerment.service.SpecialService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/second")
-public class SecondController {
+public class SecondController extends  BaseController{
 
     @Autowired
     private SecondService secondService;
@@ -31,12 +32,21 @@ public class SecondController {
         return secondService.getB();
     }
     @PostMapping("/get-list")
-    public List<Second> postFour(@RequestBody Second four){
-        return secondService.getList(four.getWorking_time());
+    public List<Second> postFour(@RequestBody Second second){
+        return secondService.getList(second.getWorking_time());
     }
 
     @PostMapping("/delete")
     public void deleteSecond(@RequestBody Second  second ){
          secondService.delete(second.getCode(), second.getBu());
+    }
+
+    @PostMapping( "/update")
+    public ResponseEntity<?> updatePrize(@RequestBody Second second){
+        boolean check =   secondService.updatePrize(second.getCode());
+        if(check){
+            return toSuccessResult(null, "UPDATE SUCCESS");
+        }
+        return toExceptionResult(null, 400);
     }
 }

@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class First {
     @Id
+    private int id;
     @Column
     private String code;
     @Column
@@ -17,4 +18,6 @@ public class First {
     private String bu;
     @Column
     private String joins;
+    @Column
+    private int receive;
 }
