@@ -21,7 +21,7 @@ public class ThirdService {
         List<Third> thirdArrayList = new ArrayList<>();
         List<Third> actual = repository.findAll();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Third third = repository.callThirdA();
             thirdArrayList.add(third);
 
@@ -33,7 +33,7 @@ public class ThirdService {
     public List<Third> getB() {
         List<Third> fourArrayList = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Third third = repository.callThirdB();
             fourArrayList.add(third);
         }
@@ -42,5 +42,9 @@ public class ThirdService {
 
     public List<Third> getList(String working_time) {
         return repository.getListThird(working_time);
+    }
+
+    public int check() {
+        return repository.checkThird();
     }
 }

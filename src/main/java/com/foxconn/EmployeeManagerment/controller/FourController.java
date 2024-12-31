@@ -33,4 +33,8 @@ public class FourController {
     public List<Four> postFour(@RequestBody  Four four){
         return fourService.getList(four.getWorking_time());
     }
+    @GetMapping("/check")
+    public int checkFour(){
+        return fourService.check();
+    }
 }

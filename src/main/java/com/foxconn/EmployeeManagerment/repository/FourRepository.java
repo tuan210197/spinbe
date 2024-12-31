@@ -23,4 +23,7 @@ public interface FourRepository extends JpaRepository<Four, String> {
 
     @Query(value = "select  code, vn_name,bu,working_time from sp.four where working_time = :working_time ORDER BY id asc", nativeQuery = true)
     List<Four> getListFour(@Param("working_time") String working_time);
+
+    @Query(value = "select * from sp.check_four()", nativeQuery = true)
+    int checkFour();
 }

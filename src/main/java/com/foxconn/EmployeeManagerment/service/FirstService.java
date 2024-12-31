@@ -25,7 +25,7 @@ public class FirstService {
     }
 
     public List<First> getList() {
-        return firstRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        return firstRepository.findAll(Sort.by(Sort.Direction.DESC, "receive"));
     }
     public void delete(String code, String bu){
 
@@ -44,12 +44,13 @@ public class FirstService {
         if(first.getReceive() == 1){
             first.setReceive(0);
             firstRepository.save(first);
-            return true;
-        }else if(first.getReceive() == 0){
-            first.setReceive(1);
-            firstRepository.save(first);
+            firstRepository.deleteFirstPrize(first.getBu());
             return true;
         }
         else return false;
+    }
+
+    public int checkFirst() {
+        return firstRepository.checkFirst();
     }
 }

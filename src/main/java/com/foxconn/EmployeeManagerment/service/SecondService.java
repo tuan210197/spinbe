@@ -25,18 +25,12 @@ public class SecondService {
     public List<Second> getA() {
         List<Second> thirdArrayList = new ArrayList<>();
         List<Second> actual = repository.findAll();
-
-
             Second third = repository.callSecondA();
             thirdArrayList.add(third);
-
-
         return thirdArrayList;
     }
-
     public List<Second> getB() {
         List<Second> fourArrayList = new ArrayList<>();
-
             Second third = repository.callSecondB();
             fourArrayList.add(third);
         return fourArrayList;
@@ -44,6 +38,9 @@ public class SecondService {
 
     public List<Second> getList(String working_time) {
         return repository.getListSecond(working_time);
+    }
+    public List<Second> getList2(String working_time) {
+        return repository.getListSecond2(working_time);
     }
 
     public void delete(String code, String bu){
@@ -64,12 +61,13 @@ public class SecondService {
         if(second.getReceive() == 1){
             second.setReceive(0);
             repository.save(second);
-            return true;
-        }else if(second.getReceive() == 0){
-            second.setReceive(1);
-            repository.save(second);
+            repository.deleteSecondPrize(second.getBu());
             return true;
         }
         else return false;
+    }
+
+    public int check() {
+        return repository.checkSecond();
     }
 }

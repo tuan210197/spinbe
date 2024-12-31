@@ -35,6 +35,10 @@ public class SecondController extends  BaseController{
     public List<Second> postFour(@RequestBody Second second){
         return secondService.getList(second.getWorking_time());
     }
+    @PostMapping("/get-list2")
+    public List<Second> postFour2(@RequestBody Second second){
+        return secondService.getList2(second.getWorking_time());
+    }
 
     @PostMapping("/delete")
     public void deleteSecond(@RequestBody Second  second ){
@@ -48,5 +52,9 @@ public class SecondController extends  BaseController{
             return toSuccessResult(null, "UPDATE SUCCESS");
         }
         return toExceptionResult(null, 400);
+    }
+    @GetMapping("/check")
+    public int checkSecond(){
+        return secondService.check();
     }
 }

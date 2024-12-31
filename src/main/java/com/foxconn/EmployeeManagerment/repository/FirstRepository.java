@@ -2,7 +2,9 @@ package com.foxconn.EmployeeManagerment.repository;
 
 import com.foxconn.EmployeeManagerment.entity.First;
 import com.foxconn.EmployeeManagerment.entity.Special;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -18,4 +20,12 @@ public interface FirstRepository extends JpaRepository<First, String> {
 
     @Query(value = "SELECT u FROM First u WHERE u.code = :code")
    First findByCode(@Param("code") String code);
+
+    @Query(value = "select * from sp.check_first()", nativeQuery = true)
+    int checkFirst();
+
+    @Transactional
+    @Modifying
+    @Query(value = "CALL sp.on_delete1(:bu)", nativeQuery = true)
+    void deleteFirstPrize(@Param("bu") String bu);
 }

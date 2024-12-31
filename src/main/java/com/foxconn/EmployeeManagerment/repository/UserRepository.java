@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-    @Query(value = "SELECT u.code, u.vn_name, u.bu, u.joins  FROM sp.user u order by random() limit 2500 ", nativeQuery = true)
+    @Query(value = "SELECT u.code, u.vn_name, u.bu, u.joins  FROM sp.user u order by random() limit 5000 ", nativeQuery = true)
     List<User> random();
 }

@@ -22,7 +22,7 @@ public class SpecialService {
         return repository.callSpecial();
     }
     public List<Special> getList(){
-        return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "receive"));
     }
     public void delete(String code, String bu){
 
@@ -40,10 +40,7 @@ public class SpecialService {
         if(special1.getReceive() == 1){
            special1.setReceive(0);
            repository.save(special1);
-            return true;
-        }else if(special1.getReceive() == 0){
-            special1.setReceive(1);
-            repository.save(special1);
+           repository.deleteSpecialPrize(special1.getBu());
             return true;
         }
         else return false;

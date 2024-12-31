@@ -39,4 +39,8 @@ public class FirstController extends  BaseController{
         }
         return toExceptionResult(null, 400);
     }
+    @GetMapping("/check")
+    public int checkFirst(){
+        return firstService.checkFirst();
+    }
 }

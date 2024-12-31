@@ -50,4 +50,8 @@ public class FourService {
     public List<Four> getList(String working_time) {
         return repository.getListFour(working_time);
     }
+
+    public int check() {
+        return repository.checkFour();
+    }
 }
