@@ -23,4 +23,8 @@ public class UserController {
     private List<User> getRandom(){
         return userService.getUser();
     }
+    @GetMapping("test")
+    private  String test(){
+        return "test";
+    }
 }
