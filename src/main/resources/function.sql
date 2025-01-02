@@ -1322,3 +1322,86 @@ $BODY$;
 
 ALTER FUNCTION sp.show_congra(bigint)
     OWNER TO postgres;
+
+-- FUNCTION: sp.list_chosen()
+
+-- DROP FUNCTION IF EXISTS sp.list_chosen();
+
+CREATE OR REPLACE FUNCTION sp.list_chosen(
+	)
+    RETURNS TABLE(numbers character varying)
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $BODY$
+DECLARE
+
+total bigint;
+
+BEGIN
+
+total = (select SUM(count) from sp.congra);
+
+return query
+select n.numbers from sp.numbers n
+where counts + total <= 2535
+and n.numbers not in (select c.number::character varying from sp.congra c);
+
+END;
+$BODY$;
+
+ALTER FUNCTION sp.list_chosen()
+    OWNER TO postgres;
+-- FUNCTION: sp.list_number()
+
+-- DROP FUNCTION IF EXISTS sp.list_number();
+
+CREATE OR REPLACE FUNCTION sp.list_number(
+	)
+    RETURNS TABLE(list_number character varying)
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $BODY$
+DECLARE
+counts numeric;
+array_count INTEGER; -- Sửa tên và kiểu của biến
+total numeric;
+remain numeric;
+average numeric;
+list_number character varying;
+BEGIN
+
+array_count = (select count(*) from sp.congra);
+raise notice 'total: %', array_count;
+if array_count < 4 then
+raise notice 'nhỏ hơn 4';
+ return query
+	select n.numbers
+	-- into list_number
+	from sp.numbers n
+	where n.numbers not in (select to_char(c.number,'FM00')  from sp.congra c);
+
+end if;
+ if array_count >= 4 and array_count <7 then
+ raise notice 'lớn hơn 4';
+ 	total = (select sum(count) from sp.congra);
+ 	remain = 2535 - total;
+	average = remain / (7-array_count);
+return query
+	select n.numbers
+	from sp.numbers n
+	where n.counts <= average
+	and	n.numbers not in (select to_char(c.number,'FM00')  from sp.congra c);
+ end if;
+
+
+END;
+$BODY$;
+
+ALTER FUNCTION sp.list_number()
+    OWNER TO postgres;

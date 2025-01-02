@@ -200,3 +200,21 @@ ALTER TABLE IF EXISTS sp.congra
 
                                     ALTER TABLE IF EXISTS sp."user"
                                         OWNER to postgres;
+
+
+                                        -- Table: sp.numbers
+
+                                        -- DROP TABLE IF EXISTS sp.numbers;
+
+                                        CREATE TABLE IF NOT EXISTS sp.numbers
+                                        (
+                                            id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+                                            numbers character varying COLLATE pg_catalog."default",
+                                            counts bigint,
+                                            CONSTRAINT numbers_pkey PRIMARY KEY (id)
+                                        )
+
+                                        TABLESPACE pg_default;
+
+                                        ALTER TABLE IF EXISTS sp.numbers
+                                            OWNER to postgres;
