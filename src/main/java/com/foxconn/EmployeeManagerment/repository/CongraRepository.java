@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CongraRepository extends JpaRepository<Congra, Long> {
 
@@ -14,4 +16,8 @@ public interface CongraRepository extends JpaRepository<Congra, Long> {
     Congra callCongra(@Param("num") int num);
 
 
+    @Query(value = "select * from sp.list_chosen()", nativeQuery = true)
+    List<String> getListChosen();
+    @Query(value = "select * from sp.list_number()", nativeQuery = true)
+    List<String> getListNumber();
 }

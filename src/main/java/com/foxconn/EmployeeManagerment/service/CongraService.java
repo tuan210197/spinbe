@@ -18,4 +18,12 @@ public class CongraService {
     public List<Congra> getAll() {
         return congraRepository.findAll();
     }
+
+    public List<String> getListChosen() {
+        return congraRepository.getListChosen();
+    }
+
+    public List<String> getListNumber() {
+        return congraRepository.getListNumber();
+    }
 }

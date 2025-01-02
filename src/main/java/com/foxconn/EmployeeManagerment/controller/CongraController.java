@@ -28,4 +28,15 @@ public class CongraController {
     public List<Congra> getAll() {
         return   congraService.getAll();
     }
+
+
+    @GetMapping("/list-chosen")
+    public List<String> getAllByEmp() {
+        return congraService.getListChosen();
+    }
+    @GetMapping ("/list-number")
+    public List<String> getAllNumber(){
+        return congraService.getListNumber();
+    }
+
 }
