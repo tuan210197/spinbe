@@ -23,6 +23,11 @@ public class SpecialService {
     }
     public List<Special> getList(){
         return repository.findAll(Sort.by(Sort.Direction.DESC, "receive"));
+//        Sort.by(Sort.Direction.DESC, "receive")
+//    return repository.lastPerson();
+    }
+    public List<Special> getListReload() {
+        return repository.lastPerson();
     }
     public void delete(String code, String bu){
 
@@ -45,4 +50,6 @@ public class SpecialService {
         }
         else return false;
     }
+
+
 }

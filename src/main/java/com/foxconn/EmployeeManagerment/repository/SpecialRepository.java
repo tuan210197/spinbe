@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface SpecialRepository extends JpaRepository<Special,String> {
    @Query(value = "select * from sp.choose_special()", nativeQuery = true)
@@ -23,4 +25,7 @@ public interface SpecialRepository extends JpaRepository<Special,String> {
     @Modifying
     @Query(value = "CALL sp.on_deletedb(:bu)", nativeQuery = true)
     void deleteSpecialPrize(@Param("bu") String bu);
+
+    @Query(value = "select * from sp.special where receive = 1 ORDER BY id", nativeQuery = true)
+    List<Special> lastPerson();
 }

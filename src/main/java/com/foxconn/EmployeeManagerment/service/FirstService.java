@@ -27,6 +27,10 @@ public class FirstService {
     public List<First> getList() {
         return firstRepository.findAll(Sort.by(Sort.Direction.DESC, "receive"));
     }
+
+    public List<First> getListReload() {
+       return firstRepository.getListReload();
+    }
     public void delete(String code, String bu){
 
         try {
@@ -53,4 +57,5 @@ public class FirstService {
     public int checkFirst() {
         return firstRepository.checkFirst();
     }
+
 }

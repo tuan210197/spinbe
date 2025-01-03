@@ -25,6 +25,10 @@ public class FirstController extends  BaseController{
     public List<First> getList(){
         return  firstService.getList();
     }
+    @GetMapping("/list-reload")
+    public List<First> getListReload(){
+        return  firstService.getListReload();
+    }
 
     @PostMapping("/delete")
     public void deleteSecond(@RequestBody First second ){

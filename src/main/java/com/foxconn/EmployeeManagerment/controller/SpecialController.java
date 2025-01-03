@@ -21,9 +21,13 @@ public class SpecialController extends BaseController {
         return specialService.getSpecialData();
     }
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public List<Special> getList(){
         return specialService.getList();
+    }
+    @GetMapping("/list-reload")
+    public List<Special> getListReload(){
+        return specialService.getListReload();
     }
 
     @PostMapping("/delete")

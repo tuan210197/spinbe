@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface FirstRepository extends JpaRepository<First, String> {
 
@@ -28,4 +30,7 @@ public interface FirstRepository extends JpaRepository<First, String> {
     @Modifying
     @Query(value = "CALL sp.on_delete1(:bu)", nativeQuery = true)
     void deleteFirstPrize(@Param("bu") String bu);
+
+    @Query(value = "select * from sp.first where receive = 1 ORDER BY id", nativeQuery = true)
+    List<First> getListReload();
 }
