@@ -58,4 +58,7 @@ public class FirstService {
         return firstRepository.checkFirst();
     }
 
+    public int countFirst() {
+        return firstRepository.countFirst();
+    }
 }

@@ -52,4 +52,7 @@ public class SpecialService {
     }
 
 
+    public int countSpecial() {
+        return repository.countSpecial();
+    }
 }

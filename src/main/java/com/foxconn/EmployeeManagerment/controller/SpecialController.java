@@ -42,4 +42,8 @@ public class SpecialController extends BaseController {
      }
         return toExceptionResult(null, 400);
     }
+    @GetMapping("/count-special")
+    public int countSpecial(){
+        return specialService.countSpecial();
+    }
 }

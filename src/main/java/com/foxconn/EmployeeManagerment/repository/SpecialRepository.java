@@ -28,4 +28,7 @@ public interface SpecialRepository extends JpaRepository<Special,String> {
 
     @Query(value = "select * from sp.special where receive = 1 ORDER BY id", nativeQuery = true)
     List<Special> lastPerson();
+
+    @Query(value = "SELECT COUNT(*) FROM sp.special s WHERE s.receive = 1", nativeQuery = true)
+    int countSpecial();
 }

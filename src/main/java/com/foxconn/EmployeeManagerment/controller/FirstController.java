@@ -47,4 +47,8 @@ public class FirstController extends  BaseController{
     public int checkFirst(){
         return firstService.checkFirst();
     }
+    @GetMapping("/count-first")
+    public int countFirst(){
+        return firstService.countFirst();
+    }
 }

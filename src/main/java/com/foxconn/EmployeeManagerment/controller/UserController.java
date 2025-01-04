@@ -23,7 +23,7 @@ public class UserController {
     private List<User> getRandom(){
         return userService.getUser();
     }
-    @GetMapping("test")
+    @GetMapping("/test")
     private  String test(){
         return "test";
     }

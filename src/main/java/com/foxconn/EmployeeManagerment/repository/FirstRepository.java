@@ -35,4 +35,6 @@ public interface FirstRepository extends JpaRepository<First, String> {
     List<First> getListReload();
 
 
+    @Query(value = "SELECT COUNT(*) FROM sp.first f WHERE f.receive = 1", nativeQuery = true)
+    int countFirst();
 }
