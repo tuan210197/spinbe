@@ -33,4 +33,6 @@ public interface FirstRepository extends JpaRepository<First, String> {
 
     @Query(value = "select * from sp.first where receive = 1 ORDER BY id", nativeQuery = true)
     List<First> getListReload();
+
+
 }

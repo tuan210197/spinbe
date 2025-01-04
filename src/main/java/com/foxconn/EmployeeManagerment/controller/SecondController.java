@@ -57,4 +57,13 @@ public class SecondController extends  BaseController{
     public int checkSecond(){
         return secondService.check();
     }
+
+    @PostMapping("/check-count")
+    public int checkCount(@RequestBody Second second){
+        return secondService.checkCountSecondA(second.getWorking_time());
+    }
+    @GetMapping("/count-second")
+    public int countSecond(){
+        return secondService.countSecond();
+    }
 }

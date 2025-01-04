@@ -70,4 +70,12 @@ public class SecondService {
     public int check() {
         return repository.checkSecond();
     }
+
+    public int checkCountSecondA(String working_time ) {
+        return repository.checkCountSecondA(working_time);
+    }
+
+    public int countSecond() {
+        return  repository.countSecond();
+    }
 }

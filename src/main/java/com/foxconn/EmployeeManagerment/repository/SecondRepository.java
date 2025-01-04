@@ -43,4 +43,11 @@ public interface SecondRepository extends JpaRepository<Second, String> {
     @Modifying
     @Query(value = "CALL sp.on_delete2(:bu)", nativeQuery = true)
     void deleteSecondPrize(@Param("bu") String bu);
+
+
+    @Query(value = "Select count(s) from Second s where s.working_time = :working_time")
+    int checkCountSecondA(@Param("working_time") String working_time);
+
+    @Query(value = "Select count(s) from Second s")
+    int countSecond();
 }
