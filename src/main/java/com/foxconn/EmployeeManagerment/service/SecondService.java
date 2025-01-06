@@ -71,11 +71,16 @@ public class SecondService {
         return repository.checkSecond();
     }
 
-    public int checkCountSecondA(String working_time ) {
-        return repository.checkCountSecondA(working_time);
+    public int checkCountSecondA(String working_time , int receive) {
+        return repository.checkCountSecondA(working_time, receive);
     }
 
-    public int countSecond() {
-        return  repository.countSecond();
+    public int countSecondb() {
+        return  repository.countSecondb();
+    }
+
+
+    public int countSeconda() {
+        return  repository.countSeconda();
     }
 }
