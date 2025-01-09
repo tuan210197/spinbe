@@ -25,7 +25,7 @@ public class FirstService {
     }
 
     public List<First> getList() {
-        return firstRepository.findAll(Sort.by(Sort.Direction.DESC, "receive"));
+        return firstRepository.findAllFirstList();
     }
 
     public List<First> getListReload() {

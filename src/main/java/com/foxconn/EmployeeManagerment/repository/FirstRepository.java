@@ -37,4 +37,9 @@ public interface FirstRepository extends JpaRepository<First, String> {
 
     @Query(value = "SELECT COUNT(*) FROM sp.first f WHERE f.receive = 1", nativeQuery = true)
     int countFirst();
+
+    @Query(value = "SELECT * FROM sp.first ORDER BY receive  DESC, id DESC", nativeQuery = true)
+    List<First> findAllFirst();
+    @Query(value = "select * from sp.first order by receive desc, id desc", nativeQuery = true)
+    List<First> findAllFirstList();
 }

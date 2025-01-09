@@ -31,4 +31,6 @@ public interface SpecialRepository extends JpaRepository<Special,String> {
 
     @Query(value = "SELECT COUNT(*) FROM sp.special s WHERE s.receive = 1", nativeQuery = true)
     int countSpecial();
+    @Query(value = "select * from sp.special order by receive desc, id desc", nativeQuery = true)
+    List<Special> findAllSpecial();
 }

@@ -22,7 +22,7 @@ public class SpecialService {
         return repository.callSpecial();
     }
     public List<Special> getList(){
-        return repository.findAll(Sort.by(Sort.Direction.DESC, "receive"));
+        return repository.findAllSpecial();
 //        Sort.by(Sort.Direction.DESC, "receive")
 //    return repository.lastPerson();
     }

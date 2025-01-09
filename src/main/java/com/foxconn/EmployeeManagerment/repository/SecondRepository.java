@@ -27,7 +27,8 @@ public interface SecondRepository extends JpaRepository<Second, String> {
     @Query(value = "select id, code, vn_name,bu,working_time, joins, receive  from sp.second where working_time = :working_time ORDER BY id  desc", nativeQuery = true)
     List<Second> getListSecond(@Param("working_time") String working_time);
 
-    @Query(value = "select id, code, vn_name,bu,working_time, joins, receive  from sp.second where working_time = :working_time ORDER BY receive DESC", nativeQuery = true)
+    @Query(value = "select id, code, vn_name,bu,working_time, joins, receive  from sp.second where working_time = :working_time " +
+            "ORDER BY receive DESC, id DESC", nativeQuery = true)
     List<Second> getListSecond2(@Param("working_time") String working_time);
 
     @Query(value = "call sp.on_delete(:code, :bu)", nativeQuery = true)
