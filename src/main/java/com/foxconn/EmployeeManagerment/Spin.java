@@ -10,5 +10,4 @@ public class Spin {
 	public static void main(String[] args) {
 		SpringApplication.run(Spin.class, args);
 	}
-
 }
