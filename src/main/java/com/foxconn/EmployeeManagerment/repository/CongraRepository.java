@@ -14,7 +14,6 @@ public interface CongraRepository extends JpaRepository<Congra, Long> {
 
     @Query(value = "select * from sp.show_congra(:num) limit 1", nativeQuery = true)
     Congra callCongra(@Param("num") int num);
-
     @Query(value = "select * from sp.list_chosen()", nativeQuery = true)
     List<String> getListChosen();
     @Query(value = "select * from sp.list_number()", nativeQuery = true)
